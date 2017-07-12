@@ -1,5 +1,12 @@
 language: java
 jdk: oraclejdk8
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
@@ -9,7 +16,7 @@ deploy:
     on: &2
       branch: master
     bucket: telegram-bots-delivery-bucket
-    region: eu-central-1b
+    region: eu-central-1
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
@@ -17,9 +24,9 @@ deploy:
     key: telegram-bots.jar
     application: telegram-bots-deploy
     deployment_group: bots
-    region: eu-central-1b
+    region: eu-central-1
     on: *2
 script:
   - ./gradlew shadowJar
   - mkdir -p deployment
-  - mv build/libs/telegram-bots.jar deployments/
+  - mv build/libs/telegram-bots.jar deployment/.
