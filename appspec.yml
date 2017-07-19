@@ -7,7 +7,7 @@ files:
     destination: /home/ubuntu/telegram-bots
 
 hooks:
-  - ApplicationStop:
-    - location: /home/ubuntu/telegram-bots/stop.sh
-  - ApplicationStart:
-    - location: /home/ubuntu/telegram-bots/start.sh
+   ApplicationStop:
+     - location: /home/ubuntu/telegram-bots/stop.sh
+   ApplicationStart:
+     - location: /home/ubuntu/telegram-bots/start.sh
