@@ -23,6 +23,7 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY
     bucket: telegram-bots-delivery-bucket
     key: telegram-bots.jar
+    bundle_type: jar
     application: telegram-bots-deploy
     deployment_group: bots
     region: eu-central-1
