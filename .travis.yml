@@ -30,6 +30,8 @@ deploy:
     on: *2
 script:
   - ./gradlew shadowJar
-  - zip build/libs/telegram-bots.zip build/libs/telegram-bots.jar appspec.yml
   - mkdir -p deployment
-  - mv build/libs/telegram-bots.zip deployment/.
+  - cp build/libs/telegram-bots.jar deployment/.
+  - cp appspec.yml deployment/.
+  - cd deployment
+  - zip telegram-bots *
