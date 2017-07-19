@@ -35,3 +35,4 @@ script:
   - cp appspec.yml deployment/.
   - cd deployment
   - zip telegram-bots *
+  - cd ..
