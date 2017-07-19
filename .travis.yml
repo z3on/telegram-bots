@@ -13,7 +13,7 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY
     local_dir: deployment
     skip_cleanup: true
-    bundle_type: jar
+    bundle_type: zip
     on: &2
       branch: master
     bucket: telegram-bots-delivery-bucket
@@ -22,13 +22,14 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: telegram-bots-delivery-bucket
-    key: telegram-bots.jar
-    bundle_type: jar
+    key: telegram-bots.zip
+    bundle_type: zip
     application: telegram-bots-deploy
     deployment_group: bots
     region: eu-central-1
     on: *2
 script:
   - ./gradlew shadowJar
+  - zip build/libs/telegram-bots.zip build/libs/telegram-bots.jar
   - mkdir -p deployment
-  - mv build/libs/telegram-bots.jar deployment/.
+  - mv build/libs/telegram-bots.zip deployment/.
